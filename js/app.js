@@ -1,40 +1,4 @@
-'use strict';
-
-const STATE = {
-  items: [], priceHistory: [], alertLog: [],
-  alertCount: 0, monitoring: false, intervalId: null,
-  settings: { interval: 30, sound: true, notifications: false },
-  chart: null,
-  allItems: [],   // Ø¢ÛŒØªÙ…â€ŒÙ‡Ø§ÛŒ Ú©Ø§Ù…Ù„ Ø§Ø² API
-  allPrices: {},  // Ù‚ÛŒÙ…Øªâ€ŒÙ‡Ø§ÛŒ Ú©Ø§Ù…Ù„ Ø§Ø² API
-};
-
-const CORS = 'https://corsproxy.io/?url=';
-const DATA_URL  = 'https://tldb.info/auction-house/__data.json';
-const PRICE_URL = 'https://tldb.info/api/ah/prices';
-
-// ØªØ§Ø±ÛŒØ®Ú†Ù‡ Ù‚ÛŒÙ…Øª Û· Ø±ÙˆØ²Ù‡ â€” Ø°Ø®ÛŒØ±Ù‡ Ø´Ø¯Ù‡ Ø¯Ø± localStorage
-// Ù‡Ø± Ø¨Ø§Ø± Ú©Ù‡ Ù‚ÛŒÙ…Øª Ù…ÛŒâ€ŒÚ¯ÛŒØ±ÛŒÙ…ØŒ Ø§Ø¶Ø§ÙÙ‡ Ù…ÛŒâ€ŒÚ©Ù†ÛŒÙ…
-// Ù…ÛŒØ§Ù†Ú¯ÛŒÙ† = Ù…ÛŒØ§Ù†Ú¯ÛŒÙ† ØªÙ…Ø§Ù… Ù†Ù‚Ø§Ø· Û· Ø±ÙˆØ² Ø§Ø®ÛŒØ±
-
-const DEFAULT_ITEMS = [{
-  id: 'chest_leather_aa_t3_normal_004_blueprint',
-  name: 'Blood Hunter Garb Lithograph',
-  icon: 'ðŸ—¡ï¸', alertBelow: 500, region: 'eu', enabled: true,
-  lastPrice: null, avgPrice: null,
-}];
-
-// â”€â”€ compress-json decompress (Ù¾ÛŒØ§Ø¯Ù‡â€ŒØ³Ø§Ø²ÛŒ Ø³Ø§Ø¯Ù‡) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-function decompressCJ(compressed) {
-  if (!Array.isArray(compressed)) return compressed;
-  const [keys, ...rows] = compressed;
-  return rows.map(row => {
-    if (!Array.isArray(row)) return row;
-    const obj = {};
-    row.forEach((val, i) => { if (keys[i] !== undefined) obj[keys[i]] = val; });
-    return obj;
-  });
-}
+obj[keys[i}
 
 // â”€â”€ devalue unflatten (Ø³Ø§Ø¯Ù‡) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function simpleUnflatten(nodes) {
